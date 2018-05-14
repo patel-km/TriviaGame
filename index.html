@@ -4,15 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Trivia</title>
+    <title>Eco-Trivia</title>
+    <link rel="stylesheet" type ="text/css" href="assets/css/reset.css">
+    <link href="https://fonts.googleapis.com/css?family=Titan+One" rel="stylesheet">
+    <link rel="stylesheet" type ="text/css" href="assets/css/style.css">
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     
 </head>
 <body>
+    <div id="container">
+
+    
+        <div id="head">
+            <h1>Eco-Trivia!</h1>
+            <button>Start</button>
+        </div>
+    <!--__________________________________________-->
+        <div id="startScreen">
+
+        </div>
+    <!--__________________________________________-->
+        <div id="game">
+
+        </div>
+    <!--__________________________________________-->
+        <div id="endScreen">
+            <h1></h1>
+        </div>
+
+    </div> <!--container end div-->
+<!--JS JQ here __________________________________________-->
     <script>
         //Home screen
             //name of quiz
             //click start to start the game
+            //switch to showing "game" div
 
         //game includes:
             //timer ticking down for full quiz (maybe 120 sec) so it auto calls done function when timer runs out
@@ -20,6 +47,7 @@
             //answer choices for each question
             //selecting only one answer per question
             //done button to click if user finishes before time's up
+            ///switch to showing "endScreen" div
             
 
         //when timer hits zero, done screen

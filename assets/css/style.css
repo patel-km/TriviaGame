@@ -1,0 +1,32 @@
+body {
+    background-color: lightgreen;
+    font-family: 'Titan One', cursive;
+    size: 16px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 40px;
+    color: #fff;
+}
+
+button {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: burlywood;
+    color:#663333;
+    font-size: 16px;
+    border: none;
+    margin: 20px 0px 20px 0px;
+    height: 30px;
+    width: 100px;
+}
+
+#container {
+    background-color: green;
+    padding: 100px 40px 100px 40px;
+    margin: auto;
+    height: auto;
+    width: 800px;
+    margin-top: 80px;
+}
+
