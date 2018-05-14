@@ -21,6 +21,7 @@ button {
     width: 100px;
 }
 
+/* IDs */
 #container {
     background-color: green;
     padding: 100px 40px 100px 40px;
