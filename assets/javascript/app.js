@@ -2,7 +2,7 @@
 
 var myQuestions = [
     {
-      question: "If the entire world lived like the average American, how many planets would we need to provide enough resources? (1/3 planet, 1/2 planet, 1 planet, 5 planets)",
+      question: "If the entire world lived like the average American, how many planets would we need to provide enough resources?",
       answers: {
         a: "1/3 planet",
         b: "1/2 planet",
@@ -86,28 +86,36 @@ var myQuestions = [
   var right = 0;
   var wrong = 0;
   var blank = 0;
+  var userGuesses = [];
+  var correctAnswers = [];
 
 
   //click start to start the game
-  $("#start").on("click" game() {
-    //make endScreen show after 120 seconds
-    setTimeout: (doneButton, 120000);
+  $("#start").on("click", function (startGame) {
+    $("#game").html(myQuestions);
+
+    
   });
+
+  //make endScreen show after 120 seconds
+  setTimeout(startGame, 120000);
 
   
 
   //Display questionnaire
   //let user select ONE answer for each question
-  function game () {
-    $("#game").html(myQuestions);
+  // function game () {
+  //   $("#done").visibility("visible");
+  //   $("#game").text(myQuestions);
 
-    for (j = 0; j < answers.size; j++) {
-      //make it a radial button
+  //   for (j = 0; j < answers.size; j++) {
+  //     //make it a radial button
       
 
-    }
+  //   }
 
-  } 
+  // } 
+  
 
   
 
@@ -122,9 +130,12 @@ var myQuestions = [
 
 
   //When "done" hit or timeout, we want a function to:
-    //check if user's answer matches up with correct answer, for each question (for loop)
+
     //record number of correct and incorrect guesses and number of unanswered questions
-    //print number of correct, incorrect, and unanswered
+
+    //check if user's answer matches up with correct answer, for each question (for loop)
+
+    //calculate and print number of correct, incorrect, and unanswered
   function showResults() {
     
     for (var i = 0; i < myQuestions.length; i++) {
