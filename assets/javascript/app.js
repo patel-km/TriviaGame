@@ -34,9 +34,9 @@ var myQuestions = [
       correctAnswer: "a"
     },
     {
-      question: "tba",
+      question: "How much plastic waste gets dumped into the oceans every year?",
       answers: [
-        "tba",
+        "4.8 million metric tons",
         "tba",
         "tba",
         "tba"
@@ -44,14 +44,14 @@ var myQuestions = [
       correctAnswer: "a"
     },
     {
-      question: "tba",
+      question: "According to the New York Times, in which decade did global warming become public news in the USA?",
       answers: [
-        "tba",
-        "tba",
-        "tba",
-        "tba"
+        "1970s",
+        "1980s",
+        "1990s",
+        "2000s"
       ],
-      correctAnswer: "a"
+      correctAnswer: "b"
     },
     {
       question: "tba",
@@ -89,12 +89,12 @@ var myQuestions = [
   var wrong = 0;
   var blank = 0;
   var userGuesses = [];
-  var correctAnswers = [];
-  var counter = 120;
+  var correctAnswers = ["d", "c", "a", "a", "b", "", "", ""];
+  var counter = 5;
 
 
 
-//_____________________ FUNCTIONS_________________________________________________________________________
+//____ FUNCTIONS_________________________________________________________________________
 //Display questionnaire
 //game includes:
     //timer ticking down for full quiz & it auto calls done function when timer runs out
@@ -105,17 +105,26 @@ var myQuestions = [
 
   function game () {
 
+    $("#start").hide(); // hide the start button upon clicking
+    $("#done").show();  // show the done button when the questions visible
+
     setInterval(countdown, 1000);//make endScreen show after 120 seconds
+    
 
     // display questions in HTML
     for (var i = 0; i < myQuestions.length; i++) {
       $("#game").append("<h2>" + myQuestions[i].question + "</h2>");
+      $("h2").addClass("question");
+      
 
       //make a radial button for every answer choice for each of the questions
       for (var j = 0; j < myQuestions[i].answers.length; j++) {
         console.log('radial button for loop');
         $("#game").append("<input type= 'radio' name ='question-" + i + " ' value ='" + myQuestions[i].answers[j] + "''>" + myQuestions[i].answers[j] );
+        $("#game").append("<br>");
       }
+
+      $("#game").append("<br>");
     }
   };
 
@@ -123,10 +132,14 @@ var myQuestions = [
   function countdown () {
     counter--;
     $("#counter").html("You have: " + counter + " seconds left!");
-    // if (counter < 1) {
-      //done function
-    // }
-    console.log("COUNTER: "+ counter);
+    $("#counter").append("<br>");
+
+    if (counter === 0 ) {
+      $("#counter").hide();
+      showResults();
+    }
+
+    console.log("COUNTER: " + counter);
   };
 
 //When "done" button hit or timeout, we want a function to:
@@ -134,41 +147,54 @@ var myQuestions = [
     //check if user's answer matches up with correct answer, for each question (for loop)
     //calculate and print number of correct, incorrect, and unanswered
     
-    // function showResults() {
+    function showResults() {
 
     //   $.each($("input[name='question-0']:checked"), function(){
     //     if($(this))
     //   })
+
+      $("#done").hide();
       
-    //   for (var i = 0; i < myQuestions.length; i++) {
-    //     $("").____(myQuestions[i]);
-    //     if (userAnswer === correctAnswer) {
-    //       right++;
-    //       $("#right").text("Correct Answers:" + right);
-    //     }
-    //     else if (userAnswer !== correctAnswer) {
-    //       wrong++;
-    //       $("#wrong").text("Wrong Answers:" + wrong);
-    //     }
-    //     else {
-    //       blank++;
-    //       $("#blank").text("Unanswered:" + blank);
-    //     }
-    //   }
-    // }
+      for (var i = 0; i < correctAnswers.length; i++) {
 
-//_____________________ GAME LOGIC/PROCESS_________________________________________________________________________
+        if (userGuesses[i] === correctAnswers[i]) {
+          right++;
+          $("#right").text("Correct Answers:" + right);
+        }
 
-  //click start to start the game
+        else if (userGuesses[i] !== correctAnswers[i]) {
+          wrong++;
+          $("#wrong").text("Wrong Answers:" + wrong);
+        }
 
-  $("#start").on("click", function (startGame) {
-    $("#game").html(myQuestions);
-    game();
-    
-  });
-
+        else {
+          blank++;
+          $("#blank").text("Unanswered:" + blank);
+        }
+      }
+    }
 
   
+//GAME LOGIC/SEQUENCE_________________________________________________________________________
 
-  // //Display endscreen
-  // $("#done").on("click", showResults());
+  //hide button until needed.
+  $("#done").hide();
+
+  // click start to start the game.
+  $("#start").on("click", function (startGame) {
+    $("#game").html(myQuestions);
+    game()
+  });
+
+  // show results when countdown reaches 0.
+  if (counter === 0) {
+    $("#game").hide();
+    showResults();
+  }
+
+  // click done to see your results.
+  $("#done").on("click", function () {
+    $("#counter").hide();
+    $("#game").hide();
+    showResults();
+  });

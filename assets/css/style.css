@@ -1,19 +1,23 @@
 body {
-    background-color: lightgreen;
     font-family: 'Titan One', cursive;
     size: 16px;
     text-align: center;
+    background-image: url('../images/country-quilt/country-quilt.png');
 }
 
 h1 {
     font-size: 40px;
-    color: #fff;
+    color: green;
+}
+
+h2 {
+    color: #78AB46;
 }
 
 button {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: burlywood;
-    color:#663333;
+    background-color: green;
+    color:white;
     font-size: 16px;
     border: none;
     margin: 20px 0px 20px 0px;
@@ -23,7 +27,8 @@ button {
 
 /* IDs */
 #container {
-    background-color: green;
+    background-color: white;
+    border: 5px solid green;
     padding: 100px 40px 100px 40px;
     margin: auto;
     height: auto;
@@ -31,7 +36,11 @@ button {
     margin-top: 80px;
 }
 
-#done {
-    visibility: hidden;
+#game {
+    color:green;
+}
+
+#counter {
+    color:red;
 }
 
