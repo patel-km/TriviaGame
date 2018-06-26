@@ -11,7 +11,9 @@ h1 {
 }
 
 h2 {
-    color: #78AB46;
+    /* color: #78AB46; */
+    color: green;
+    margin: 8px;
 }
 
 button {
@@ -37,7 +39,7 @@ button {
 }
 
 #game {
-    color:green;
+    color:gray;
 }
 
 #counter {
