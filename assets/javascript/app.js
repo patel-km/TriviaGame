@@ -24,12 +24,12 @@ var myQuestions = [
       correctAnswer: "c"
     },
     {
-      question: "A full 32% of the 78 million tons of plastic packaging produced annually is left to flow into our oceans. Which of the below illustrates the equivalent of that amount?",
+      question: "A full 32% of the 78 million tons of plastic packaging produced annually is left to flow into our oceans. Which of the choices below illustrates the equivalent of that amount?",
       answers: [
         "Pouring one garbage truck of plastic into the ocean every minute",
-        "tba",
-        "tba",
-        "tba"
+        "Pouring one garbage truck of plastic into the ocean every second",
+        "Pouring one garbage truck of plastic into the ocean every hour",
+        "Pouring one garbage truck of plastic into the ocean every millisecond"
       ],
       correctAnswer: "a"
     },
@@ -37,9 +37,9 @@ var myQuestions = [
       question: "How much plastic waste gets dumped into the oceans every year?",
       answers: [
         "4.8 million metric tons",
-        "tba",
-        "tba",
-        "tba"
+        "3.5 million metric tons",
+        "5.0 million metric tons",
+        "4.1 million metric tons"
       ],
       correctAnswer: "a"
     },
@@ -54,34 +54,34 @@ var myQuestions = [
       correctAnswer: "b"
     },
     {
-      question: "tba",
+      question: "How many trees are cut down each day to produce toilet paper?",
       answers: [
-        "tba",
-        "tba",
-        "tba",
-        "tba"
+        "15,000",
+        "21,000",
+        "27,000",
+        "30,000"
       ],
-      correctAnswer: "a"
+      correctAnswer: "c"
     },
     {
-      question: "tba",
+      question: "Which of these major cities faced a water scarcity crisis in 2018? Measures were so extreme that citizens were showering standing over buckets to catch and re-use that water, recycling washing machine water, and limiting 'loo' flushes to once a day.",
       answers: [
-        "tba",
-        "tba",
-        "tba",
+        "London",
+        "Cape Town",
+        "Sydney",
         "tba"
       ],
-      correctAnswer: "a"
+      correctAnswer: "b"
     },
     {
-      question: "tba",
+      question: "Comparing the people in the city above to the average American, how many liters of water does a person from each country use per day?",
       answers: [
-        "tba",
-        "tba",
-        "tba",
-        "tba"
+        "US: 302-378L vs. other: 250L",
+        "US: 302-378L vs. other: 150L",
+        "US: 302-378L vs. other: 100L",
+        "US: 302-378L vs. other: 50L"
       ],
-      correctAnswer: "a"
+      correctAnswer: "d"
     }
   ];
 
@@ -89,7 +89,7 @@ var myQuestions = [
   var wrong = 0;
   var blank = 0;
   var userGuesses = [];
-  var correctAnswers = ["d", "c", "a", "a", "b", "", "", ""];
+  var correctAnswers = ["d", "c", "a", "a", "b", "c", "b", "d"];
   var counter = 5;
 
 
@@ -154,6 +154,8 @@ var myQuestions = [
     //   })
 
       $("#done").hide();
+      $("#game").hide();
+      $("#endScreen").show();
       
       for (var i = 0; i < correctAnswers.length; i++) {
 
@@ -195,6 +197,6 @@ var myQuestions = [
   // click done to see your results.
   $("#done").on("click", function () {
     $("#counter").hide();
-    $("#game").hide();
+    // $("#game").hide();
     showResults();
   });
