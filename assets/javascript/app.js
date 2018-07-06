@@ -11,7 +11,7 @@ var myQuestions = [
         "1 planet",
         "5 planets",
       ],
-      correctAnswer: "d"
+      correctAnswer: "5 planets"
     },
     {
       question: "A glass bottle can take up to how many years to decompose?",
@@ -21,7 +21,7 @@ var myQuestions = [
         "4000",
         "6000",
       ],  
-      correctAnswer: "c"
+      correctAnswer: "4000"
     },
     {
       question: "A full 32% of the 78 million tons of plastic packaging produced annually is left to flow into our oceans. Which of the choices below illustrates the equivalent of that amount?",
@@ -31,7 +31,7 @@ var myQuestions = [
         "Pouring one garbage truck of plastic into the ocean every hour",
         "Pouring one garbage truck of plastic into the ocean every millisecond"
       ],
-      correctAnswer: "a"
+      correctAnswer: "Pouring one garbage truck of plastic into the ocean every minute"
     },
     {
       question: "How much plastic waste gets dumped into the oceans every year?",
@@ -41,7 +41,7 @@ var myQuestions = [
         "5.0 million metric tons",
         "4.1 million metric tons"
       ],
-      correctAnswer: "a"
+      correctAnswer: "4.8 million metric tons"
     },
     {
       question: "According to the New York Times, in which decade did global warming become public news in the USA?",
@@ -51,7 +51,7 @@ var myQuestions = [
         "1990s",
         "2000s"
       ],
-      correctAnswer: "b"
+      correctAnswer: "1980s"
     },
     {
       question: "How many trees are cut down each day to produce toilet paper?",
@@ -61,7 +61,7 @@ var myQuestions = [
         "27,000",
         "30,000"
       ],
-      correctAnswer: "c"
+      correctAnswer: "27,000"
     },
     {
       question: "Which of these major cities faced a water scarcity crisis in 2018? Measures were so extreme that citizens were showering standing over buckets to catch and re-use that water, recycling washing machine water, and limiting 'loo' flushes to once a day.",
@@ -69,9 +69,9 @@ var myQuestions = [
         "London",
         "Cape Town",
         "Sydney",
-        "tba"
+        "Brussels"
       ],
-      correctAnswer: "b"
+      correctAnswer: "Cape Town"
     },
     {
       question: "Comparing the people in the city above to the average American, how many liters of water does a person from each country use per day?",
@@ -81,7 +81,7 @@ var myQuestions = [
         "US: 302-378L vs. other: 100L",
         "US: 302-378L vs. other: 50L"
       ],
-      correctAnswer: "d"
+      correctAnswer: "US: 302-378L vs. other: 50L"
     }
   ];
 
@@ -89,8 +89,8 @@ var myQuestions = [
   var wrong = 0;
   var blank = 0;
   var userGuesses = [];
-  var correctAnswers = ["d", "c", "a", "a", "b", "c", "b", "d"];
-  var counter = 10;
+  var correctAnswers = ["5 planets", "4000", "Pouring one garbage truck of plastic into the ocean every minute", "4.8 million metric tons", "1980s", "27,000", "Cape Town", "US: 302-378L vs. other: 50L"];
+  var counter = 120;
 
 
 
@@ -106,26 +106,24 @@ var myQuestions = [
   
   //Timer
   function countdown () {
-  counter--;
-  $("#counter").html("You have: " + counter + " seconds left!");
-  $("#counter").append("<br>");
+    counter--;
+    $("#counter").html("You have: " + counter + " seconds left!");
+    $("#counter").append("<br>");
 
-  if (counter === 0 ) {
-    $("#counter").hide();
-    showResults();
-  }
-
-  console.log("COUNTER: " + counter);
+    if (counter === 0 ) {
+      $("#counter").hide();
+      showResults();
+    }
   };
 
 
+  //Game
   function game () {
-
     $("#start").hide(); // hide the start button upon clicking.
     $("#done").show();  // show the done button when the questions visible.
+    $("#directions").show();
 
     setInterval(countdown, 1000);//make endScreen show after 120 seconds.
-    
 
     // display questions in HTML.
     for (var i = 0; i < myQuestions.length; i++) {
@@ -135,21 +133,27 @@ var myQuestions = [
 
       // make a radial button for every answer choice for each of the questions.
       for (var j = 0; j < myQuestions[i].answers.length; j++) {
-    
-        $("#game").append("<input type= 'radio' name ='question-" + i + " ' value ='" + myQuestions[i].answers[j] + "''>" + myQuestions[i].answers[j] );
-
-        // push the user's guess into the userGuesses array.
-        $("<input>").on("click", function() {
-          userGuesses.push(myQuestions[i].answers);
-          console.log("button value: " + myQuestions[i].answers);
-
-        });
+        
+        var radio = "<input type= 'radio' id = " + i  + "name ='question-" + i + " ' value ='" + myQuestions[i].answers[j] + "''>" + myQuestions[i].answers[j] ;
+        
+        $("#game").append(radio);
+        console.log(radio);
 
         $("#game").append("<br>");
+
       }
 
       $("#game").append("<br>");
     }
+
+    // push the user's guess into the userGuesses array.
+    $("input").on("click", function() {
+      var userInput = $(this).val();
+      
+      userGuesses.push(userInput);
+      console.log("user guesses: " + userGuesses);
+
+    });
   };
 
   
@@ -162,6 +166,7 @@ var myQuestions = [
     
     function showResults() {
 
+      $("#directions").hide();
       $("#done").hide();
       $("#game").hide();
       $("#endScreen").show();
@@ -169,32 +174,35 @@ var myQuestions = [
       for (var k = 0; k < correctAnswers.length; k++) {
 
         if (userGuesses[k] === correctAnswers[k]) {
-          rkght++;
-          $("#rkght").text("Correct Answers:" + right);
+          right++;
         }
-
         else if (userGuesses[k] !== correctAnswers[k]) {
           wrong++;
-          $("#wrong").text("Wrong Answers:" + wrong);
         }
-
-        else {
-          blank++;
-          $("#blank").text("Unanswered:" + blank);
-        }
+        // else {
+        //   blank++;
+        // }
       }
+
+      var endMsg = $("<p>").text("Thanks for playing!")
+      $("#endScreen").append(endMsg);
+      $("#right").text("Correct Answers: " + right);
+      $("#wrong").text("Wrong Answers: " + wrong);
+      // $("#blank").text("Unanswered:" + blank);
+
     }
 
   
 //GAME LOGIC/SEQUENCE_________________________________________________________________________
 
-  //hide button until needed.
+  //hide game elements until needed.
   $("#done").hide();
+  $("#directions").hide();
 
   // click start to start the game.
   $("#start").on("click", function (startGame) {
     $("#game").html(myQuestions);
-    game()
+    game();
   });
 
   // show results when countdown reaches 0.

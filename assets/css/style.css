@@ -3,6 +3,7 @@ body {
     size: 16px;
     text-align: center;
     background-image: url('../images/country-quilt/country-quilt.png');
+    color: green;
 }
 
 h1 {
@@ -11,7 +12,6 @@ h1 {
 }
 
 h2 {
-    /* color: #78AB46; */
     color: green;
     margin: 8px;
 }
