@@ -141,20 +141,25 @@ function game() {
 //check if user's answer matchtoes up with correct answer, for each question (for loop).
 //calculate and print number of correct, incorrect, and unanswered.
 function check() {
-  $.each($("input[name='question-0']:checked"), () => {
-    console.log("inside", $("input[name='question-0']:checked").val());
-    if (
-      $("input[name='question-0']:checked").val() ===
-      myQuestions[0].correctAnswer
-    ) {
-      console.log("input[name='question-0']:checked");
-      console.log("Correct");
-      right++;
-    } else {
-      console.log("INCORRECT");
-      wrong++;
-    }
-  });
+  for (var l = 0; l < myQuestions.length; l++) {
+    $.each($("input[name='question-" + l + "']:checked"), () => {
+      console.log(
+        "inside",
+        $("input[name='question-" + l + "']:checked").val()
+      );
+      if (
+        $("input[name='question-" + l + "']:checked").val() ===
+        myQuestions[l].correctAnswer
+      ) {
+        console.log("input[name='question-" + l + "']:checked");
+        console.log("Correct");
+        right++;
+      } else {
+        console.log("INCORRECT");
+        wrong++;
+      }
+    });
+  }
 }
 
 function showResults() {
@@ -167,7 +172,6 @@ function showResults() {
   $("#endScreen").append(endMsg);
   $("#right").text("Correct Answers: " + right);
   $("#wrong").text("Wrong Answers: " + wrong);
-  // $("#blank").text("Unanswered:" + blank);
 }
 
 //GAME LOGIC/SEQUENCE_________________________________________________________________________
